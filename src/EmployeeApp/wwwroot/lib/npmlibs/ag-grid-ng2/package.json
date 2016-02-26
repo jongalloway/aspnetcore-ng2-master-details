@@ -1,0 +1,47 @@
+{
+  "name": "ag-grid-ng2",
+  "version": "3.3.1",
+  "description": "ag-Grid Angular 2 Component",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceolter/ag-grid-ng2.git"
+  },
+  "keywords": [
+    "grid",
+    "data",
+    "table",
+    "angular"
+  ],
+  "author": {
+    "name": "Niall Crosby",
+    "email": "niall.crosby@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ceolter/ag-grid-ng2/issues"
+  },
+  "homepage": "http://www.ag-grid.com/",
+  "devDependencies": {
+    "systemjs": "0.19.6",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "zone.js": "0.5.11"
+  },
+  "peerDependencies": {
+    "angular2": "~2.0.0-beta.3",
+    "ag-grid": "3.3.x"
+  },
+  "dependencies": {},
+  "readme": "\r\nag-Grid Angular 2 Component\r\n==============\r\n\r\nThis project contains the Angular 2 Component for use with ag-Grid.\r\n\r\nBuilding\r\n==============\r\n\r\nTo build:\r\n- `npm install`\r\n- `npm install gulp -g`\r\n- `gulp`\r\n",
+  "readmeFilename": "README.md",
+  "_id": "ag-grid-ng2@3.3.1",
+  "_shasum": "4ffd17f88a8d1065417a1f17ff9f2274def686c5",
+  "_from": "ag-grid-ng2@3.3.x",
+  "_resolved": "https://registry.npmjs.org/ag-grid-ng2/-/ag-grid-ng2-3.3.1.tgz"
+}

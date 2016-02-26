@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeekQuiz.Services
+namespace EmployeeApp.Services
 {
     public interface IEmailSender
     {

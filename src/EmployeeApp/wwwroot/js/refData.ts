@@ -1,4 +1,5 @@
-﻿export default class RefData {
+﻿"use strict";
+export default class RefData {
 
     static IT_SKILLS = ['android', 'css', 'html5', 'mac', 'windows'];
     static IT_SKILLS_NAMES = ['Android', 'CSS', 'HTML 5', 'Mac', 'Windows'];
@@ -35,24 +36,24 @@
     };
 
     static countries = [
-        {country: "Ireland", continent: "Europe", language: "English"},
-        {country: "Spain", continent: "Europe", language: "Spanish"},
-        {country: "United Kingdom", continent: "Europe", language: "English"},
-        {country: "France", continent: "Europe", language: "French"},
-        {country: "Germany", continent: "Europe", language: "(other)"},
-        {country: "Sweden", continent: "Europe", language: "(other)"},
-        {country: "Norway", continent: "Europe", language: "(other)"},
-        {country: "Italy", continent: "Europe", language: "(other)"},
-        {country: "Greece", continent: "Europe", language: "(other)"},
-        {country: "Iceland", continent: "Europe", language: "(other)"},
-        {country: "Portugal", continent: "Europe", language: "Portuguese"},
-        {country: "Malta", continent: "Europe", language: "(other)"},
-        {country: "Brazil", continent: "South America", language: "Portuguese"},
-        {country: "Argentina", continent: "South America", language: "Spanish"},
-        {country: "Colombia", continent: "South America", language: "Spanish"},
-        {country: "Peru", continent: "South America", language: "Spanish"},
-        {country: "Venezuela", continent: "South America", language: "Spanish"},
-        {country: "Uruguay", continent: "South America", language: "Spanish"}
+        { country: "Ireland", continent: "Europe", language: "English" },
+        { country: "Spain", continent: "Europe", language: "Spanish" },
+        { country: "United Kingdom", continent: "Europe", language: "English" },
+        { country: "France", continent: "Europe", language: "French" },
+        { country: "Germany", continent: "Europe", language: "(other)" },
+        { country: "Sweden", continent: "Europe", language: "(other)" },
+        { country: "Norway", continent: "Europe", language: "(other)" },
+        { country: "Italy", continent: "Europe", language: "(other)" },
+        { country: "Greece", continent: "Europe", language: "(other)" },
+        { country: "Iceland", continent: "Europe", language: "(other)" },
+        { country: "Portugal", continent: "Europe", language: "Portuguese" },
+        { country: "Malta", continent: "Europe", language: "(other)" },
+        { country: "Brazil", continent: "South America", language: "Portuguese" },
+        { country: "Argentina", continent: "South America", language: "Spanish" },
+        { country: "Colombia", continent: "South America", language: "Spanish" },
+        { country: "Peru", continent: "South America", language: "Spanish" },
+        { country: "Venezuela", continent: "South America", language: "Spanish" },
+        { country: "Uruguay", continent: "South America", language: "Spanish" }
     ];
 
     static addresses = [

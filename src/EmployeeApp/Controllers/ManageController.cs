@@ -7,11 +7,11 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
-using GeekQuiz.Models;
-using GeekQuiz.Services;
-using GeekQuiz.ViewModels.Manage;
+using EmployeeApp.Models;
+using EmployeeApp.Services;
+using EmployeeApp.ViewModels.Manage;
 
-namespace GeekQuiz.Controllers
+namespace EmployeeApp.Controllers
 {
     [Authorize]
     public class ManageController : Controller
@@ -174,8 +174,9 @@ namespace GeekQuiz.Controllers
         }
 
         //
-        // GET: /Manage/RemovePhoneNumber
-        [HttpGet]
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePhoneNumber()
         {
             var user = await GetCurrentUserAsync();

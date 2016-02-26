@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-namespace GeekQuiz.ViewModels.Manage
+namespace EmployeeApp.ViewModels.Manage
 {
     public class IndexViewModel
     {

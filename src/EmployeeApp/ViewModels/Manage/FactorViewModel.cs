@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GeekQuiz.ViewModels.Manage
+namespace EmployeeApp.ViewModels.Manage
 {
     public class FactorViewModel
     {

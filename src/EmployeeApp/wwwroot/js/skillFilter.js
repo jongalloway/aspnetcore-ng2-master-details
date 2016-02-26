@@ -1,6 +1,5 @@
-System.register(['./refData'], function(exports_1, context_1) {
+System.register(['./refData'], function(exports_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var refData_1;
     var SKILL_TEMPLATE, FILTER_TITLE, SkillFilter;
     return {
@@ -9,7 +8,7 @@ System.register(['./refData'], function(exports_1, context_1) {
                 refData_1 = refData_1_1;
             }],
         execute: function() {
-            SKILL_TEMPLATE = '<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">' +
+            var SKILL_TEMPLATE = '<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">' +
                 '  <span>' +
                 '    <div style="text-align: center;">SKILL_NAME</div>' +
                 '    <div>' +
@@ -18,7 +17,7 @@ System.register(['./refData'], function(exports_1, context_1) {
                 '    </div>' +
                 '  </span>' +
                 '</label>';
-            FILTER_TITLE = '<div style="text-align: center; background: lightgray; width: 100%; display: block; border-bottom: 1px solid grey;">' +
+            var FILTER_TITLE = '<div style="text-align: center; background: lightgray; width: 100%; display: block; border-bottom: 1px solid grey;">' +
                 '<b>TITLE_NAME</b>' +
                 '</div>';
             class SkillFilter {
@@ -76,7 +75,7 @@ System.register(['./refData'], function(exports_1, context_1) {
                 }
                 ;
             }
-            exports_1("default", SkillFilter);
+            SkillFilter = SkillFilter;
         }
     }
 });

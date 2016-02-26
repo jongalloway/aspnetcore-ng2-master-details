@@ -6,9 +6,9 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using GeekQuiz.Models;
+using EmployeeApp.Models;
 
-namespace GeekQuiz.Migrations
+namespace EmployeeApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
@@ -99,7 +99,7 @@ namespace GeekQuiz.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("GeekQuiz.Models.ApplicationUser", b =>
+            modelBuilder.Entity("EmployeeApp.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -156,14 +156,14 @@ namespace GeekQuiz.Migrations
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GeekQuiz.Models.ApplicationUser")
+                    b.HasOne("EmployeeApp.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GeekQuiz.Models.ApplicationUser")
+                    b.HasOne("EmployeeApp.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
@@ -174,7 +174,7 @@ namespace GeekQuiz.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId");
 
-                    b.HasOne("GeekQuiz.Models.ApplicationUser")
+                    b.HasOne("EmployeeApp.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

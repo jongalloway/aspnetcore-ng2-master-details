@@ -1,10 +1,12 @@
-﻿import {Component, View, Inject} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
+﻿"use strict";
+
+import {Component, View, Inject} from 'angular2/core';
 import {Http, HTTP_BINDINGS, Headers} from 'angular2/http';
 import {GridOptions} from 'ag-grid/main';
+import {bootstrap} from 'angular2/platform/browser';
 import {AgGridNg2} from 'ag-grid-ng2/main';
 import ProficiencyFilter from './proficiencyFilter';
-import SkillFilter from './skillFilter'; 
+import SkillFilter from './skillFilter';
 import RefData from './refData';
 
 @Component({
@@ -106,7 +108,7 @@ import RefData from './refData';
     `
 })
 
-class AppComponent {
+export class AppComponent {
     private gridOptions: GridOptions;
     private showGrid: boolean;
     private rowData: any[];
@@ -151,31 +153,37 @@ class AppComponent {
 
     private createColumnDefs() {
         this.columnDefs = [
-            {headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
-                suppressMenu: true, pinned: true},
+            {
+                headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
+                suppressMenu: true, pinned: true
+            },
             {
                 headerName: 'Employee',
                 children: [
-                    {headerName: "Name", field: "name",
-                        width: 150, pinned: true},
-                    {headerName: "Country", field: "country", width: 150,
+                    {
+                        headerName: "Name", field: "name",
+                        width: 150, pinned: true
+                    },
+                    {
+                        headerName: "Country", field: "country", width: 150,
                         cellRenderer: countryCellRenderer, pinned: true,
-                        filterParams: {cellRenderer: countryCellRenderer, cellHeight: 20}},
+                        filterParams: { cellRenderer: countryCellRenderer, cellHeight: 20 }
+                    },
                 ]
             },
             {
                 headerName: 'IT Skills',
                 children: [
-                    {headerName: "Skills", width: 125, suppressSorting: true, cellRenderer: skillsCellRenderer, filter: SkillFilter},
-                    {headerName: "Proficiency", field: "proficiency", width: 120, cellRenderer: percentCellRenderer, filter: ProficiencyFilter},
+                    { headerName: "Skills", width: 125, suppressSorting: true, cellRenderer: skillsCellRenderer, filter: SkillFilter },
+                    { headerName: "Proficiency", field: "proficiency", width: 120, cellRenderer: percentCellRenderer, filter: ProficiencyFilter },
                 ]
             },
             {
                 headerName: 'Contact',
                 children: [
-                    {headerName: "Mobile", field: "mobile", width: 150, filter: 'text'},
-                    {headerName: "Land-line", field: "landline", width: 150, filter: 'text'},
-                    {headerName: "Address", field: "address", width: 500, filter: 'text'}
+                    { headerName: "Mobile", field: "mobile", width: 150, filter: 'text' },
+                    { headerName: "Land-line", field: "landline", width: 150, filter: 'text' },
+                    { headerName: "Address", field: "address", width: 500, filter: 'text' }
                 ]
             }
         ];
@@ -322,5 +330,6 @@ function percentCellRenderer(params) {
 
     return eOuterDiv;
 }
+
 
 bootstrap(AppComponent);

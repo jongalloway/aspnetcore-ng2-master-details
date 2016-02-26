@@ -9,11 +9,11 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
-using GeekQuiz.Models;
-using GeekQuiz.Services;
-using GeekQuiz.ViewModels.Account;
+using EmployeeApp.Models;
+using EmployeeApp.Services;
+using EmployeeApp.ViewModels.Account;
 
-namespace GeekQuiz.Controllers
+namespace EmployeeApp.Controllers
 {
     [Authorize]
     public class AccountController : Controller

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Play";
+    ViewData["Title"] = "Home Page";
 }
 
 <section id="content">
@@ -15,23 +15,22 @@
         System.config({
             packages: {
                 'js': { defaultExtension: 'js' },
-                lib: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                },
-                'ag-grid-ng2': {
+                'lib': { defaultExtension: 'js' },
+                'ag-grid': {
                     defaultExtension: "js"
                 },
-                'ag-grid': {
+                'ag-grid-ng2': {
                     defaultExtension: "js"
                 }
             },
             map: {
-                'ag-grid-ng2': '/lib/_npmlibs/agGridNg2',
-                'ag-grid': '/lib/_npmlibs/ag-grid'
+                'ag-grid-ng2': 'lib/npmlibs/ag-grid-ng2',
+                'ag-grid': 'lib/npmlibs/ag-grid',
             }
         });
+        
 
-        System.import('js/app');
+        System.import('js/app')
+            .then(null, console.error.bind(console));
     </script>
 }
