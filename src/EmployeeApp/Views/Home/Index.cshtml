@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Play";
+}
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <employee-app>Loading...</employee-app>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        System.config({
+            packages: {
+                'js': { defaultExtension: 'js' },
+                lib: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                },
+                'ag-grid-ng2': {
+                    defaultExtension: "js"
+                },
+                'ag-grid': {
+                    defaultExtension: "js"
+                }
+            },
+            map: {
+                'ag-grid-ng2': '/lib/_npmlibs/agGridNg2',
+                'ag-grid': '/lib/_npmlibs/ag-grid'
+            }
+        });
+
+        System.import('js/app');
+    </script>
+}
