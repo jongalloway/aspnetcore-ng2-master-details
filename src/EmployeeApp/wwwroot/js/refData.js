@@ -1,6 +1,5 @@
-System.register([], function(exports_1, context_1) {
+System.register([], function(exports_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var RefData;
     return {
         setters:[],
@@ -108,7 +107,7 @@ System.register([], function(exports_1, context_1) {
                 '1207 Iron Extension, Klickitat, SC, 29197-8571, US, (803) 535-7888',
                 '6770 Cinder Glen, Caronport, OH, 45053-5002, US, (440) 369-4018',
                 '7619 Tawny Carrefour, Senlac, NV, 89529-9876, US, (775) 901-6433'];
-            exports_1("default", RefData);
+            RefData = RefData;
         }
     }
 });

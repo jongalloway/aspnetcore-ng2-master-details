@@ -1,4 +1,5 @@
-﻿import RefData from './refData';
+﻿"use strict";
+import RefData from './refData';
 
 var SKILL_TEMPLATE =
     '<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">' +

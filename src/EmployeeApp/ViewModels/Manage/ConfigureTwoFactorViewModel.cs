@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
 
-namespace GeekQuiz.ViewModels.Manage
+namespace EmployeeApp.ViewModels.Manage
 {
     public class ConfigureTwoFactorViewModel
     {

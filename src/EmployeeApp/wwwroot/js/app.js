@@ -1,6 +1,5 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'ag-grid-ng2/main', './proficiencyFilter', './skillFilter', './refData'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'angular2/platform/browser', 'ag-grid-ng2/main', './proficiencyFilter', './skillFilter', './refData'], function(exports_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,7 +9,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, http_1, main_1, proficiencyFilter_1, skillFilter_1, refData_1;
+    var core_1, http_1, browser_1, main_1, proficiencyFilter_1, skillFilter_1, refData_1;
     var AppComponent;
     function skillsCellRenderer(params) {
         var data = params.data;
@@ -64,11 +63,11 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (browser_1_1) {
-                browser_1 = browser_1_1;
-            },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (browser_1_1) {
+                browser_1 = browser_1_1;
             },
             function (main_1_1) {
                 main_1 = main_1_1;
@@ -83,7 +82,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                 refData_1 = refData_1_1;
             }],
         execute: function() {
-            let AppComponent = class AppComponent {
+            let AppComponent = class {
                 constructor() {
                     // we pass an empty gridOptions in, so we can grab the api out
                     this.gridOptions = {};
@@ -118,16 +117,22 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                 }
                 createColumnDefs() {
                     this.columnDefs = [
-                        { headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
-                            suppressMenu: true, pinned: true },
+                        {
+                            headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
+                            suppressMenu: true, pinned: true
+                        },
                         {
                             headerName: 'Employee',
                             children: [
-                                { headerName: "Name", field: "name",
-                                    width: 150, pinned: true },
-                                { headerName: "Country", field: "country", width: 150,
+                                {
+                                    headerName: "Name", field: "name",
+                                    width: 150, pinned: true
+                                },
+                                {
+                                    headerName: "Country", field: "country", width: 150,
                                     cellRenderer: countryCellRenderer, pinned: true,
-                                    filterParams: { cellRenderer: countryCellRenderer, cellHeight: 20 } },
+                                    filterParams: { cellRenderer: countryCellRenderer, cellHeight: 20 }
+                                },
                             ]
                         },
                         {
@@ -218,7 +223,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             };
             AppComponent = __decorate([
                 core_1.Component({
-                    selector: 'geekquiz-app',
+                    selector: 'employee-app',
                     viewBindings: [http_1.HTTP_BINDINGS]
                 }),
                 core_1.View({
@@ -317,6 +322,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                 }), 
                 __metadata('design:paramtypes', [])
             ], AppComponent);
+            AppComponent = AppComponent;
             browser_1.bootstrap(AppComponent);
         }
     }
