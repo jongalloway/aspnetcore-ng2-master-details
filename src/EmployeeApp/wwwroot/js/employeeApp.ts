@@ -3,18 +3,19 @@
 import {Component, View, Inject} from 'angular2/core';
 import {Http, HTTP_BINDINGS, Headers} from 'angular2/http';
 import {GridOptions} from 'ag-grid/main';
-import {bootstrap} from 'angular2/platform/browser';
 import {AgGridNg2} from 'ag-grid-ng2/main';
 import ProficiencyFilter from './proficiencyFilter';
 import SkillFilter from './skillFilter';
 import RefData from './refData';
+import {IItemInfo} from './itemInfo';
+import {DetailsGridComponent} from './detailsGrid';
 
 @Component({
     selector: 'employee-app',
     viewBindings: [HTTP_BINDINGS]
 })
 @View({
-    directives: [AgGridNg2],
+    directives: [AgGridNg2, DetailsGridComponent],
     templateUrl: '../html/employeeApp.html'
 })
 export class EmployeeApp {
@@ -23,6 +24,7 @@ export class EmployeeApp {
     private rowData: any[];
     private columnDefs: any[];
     private rowCount: string;
+    private selectedItem: IItemInfo;
 
     constructor() {
         // we pass an empty gridOptions in, so we can grab the api out
@@ -173,6 +175,8 @@ export class EmployeeApp {
 
     private onRowClicked($event) {
         console.log('onRowClicked: ' + $event.node.data.name);
+
+        this.selectedItem = $event.node.data;
     }
 
     private onQuickFilterChanged($event) {
