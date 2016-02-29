@@ -1,4 +1,4 @@
-﻿/// <binding Clean='clean' />
+/// <binding Clean='clean' ProjectOpened='moveToLibs' />
 "use strict";
 
 var gulp = require("gulp"),
@@ -19,7 +19,6 @@ paths.concatJsDest = paths.webroot + "js/site.min.js";
 paths.concatCssDest = paths.webroot + "css/site.min.css";
 paths.npmSrc = "./node_modules/";
 paths.npmLibs = paths.webroot + "lib/npmlibs/";
-
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);
@@ -48,15 +47,20 @@ gulp.task("min:css", function () {
 gulp.task("min", ["min:js", "min:css"]);
 
 var libsToMove = [
-   paths.npmSrc + '/angular2/bundles/angular2-polyfills.min.js',
-   paths.npmSrc + '/angular2/bundles/angular2.min.js',
-   paths.npmSrc + '/angular2/bundles/http.min.js',
-   paths.npmSrc + '/systemjs/dist/system.js',
-   paths.npmSrc + '/systemjs/dist/system-polyfills.js',
    paths.npmSrc + '/es6-shim/es6-shim.min.js',
    paths.npmSrc + '/rxjs/bundles/Rx.js',
-   paths.npmSrc + '/reflect-metadata/Reflect.js',
+   paths.npmSrc + '/reflect-metadata/Reflect.js'
 ];
+
+gulp.task("copy-deps:systemjs", function () {
+    return gulp.src(paths.npmSrc + '/systemjs/dist/**/*.*', { base: paths.npmSrc + '/systemjs/dist/' })
+         .pipe(gulp.dest(paths.npmLibs + '/systemjs/'));
+});
+
+gulp.task("copy-deps:angular2", function () {
+    return gulp.src(paths.npmSrc + '/angular2/bundles/**/*.js', { base: paths.npmSrc + '/angular2/bundles/' })
+         .pipe(gulp.dest(paths.npmLibs + '/angular2/'));
+});
 
 gulp.task("copy-deps:ag-grid-ng2", function () {
     return gulp.src(paths.npmSrc + '/ag-grid-ng2/**/*.*', { base: paths.npmSrc + '/ag-grid-ng2/' })
@@ -66,7 +70,7 @@ gulp.task("copy-deps:ag-grid-ng2", function () {
 gulp.task("copy-deps:ag-grid", function () {
     return gulp.src([paths.npmSrc + '/ag-grid/main.js',
                 paths.npmSrc + '/ag-grid/dist/**/*.js',
-                paths.npmSrc + '/ag-grid/dist/styles/*.*',
+                paths.npmSrc + '/ag-grid/dist/styles/*.*'
     ], { base: paths.npmSrc + '/ag-grid/' })
          .pipe(gulp.dest(paths.npmLibs + '/ag-grid/'));
 });
@@ -75,4 +79,4 @@ gulp.task('moveToLibs:singleFiles', function () {
     return gulp.src(libsToMove).pipe(gulp.dest(paths.npmLibs));
 });
 
-gulp.task("moveToLibs", ["moveToLibs:singleFiles", "copy-deps:ag-grid-ng2", "copy-deps:ag-grid"]);
+gulp.task("moveToLibs", ["moveToLibs:singleFiles", "copy-deps:ag-grid-ng2", "copy-deps:ag-grid", 'copy-deps:angular2', 'copy-deps:systemjs']);
