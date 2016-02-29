@@ -17,12 +17,15 @@
         </environment>
 
         <script src="~/lib/npmlibs/es6-shim.min.js"></script>
-        <script src="~/lib/npmlibs/reflect.js"></script>
-        <script src="~/lib/npmlibs/system.js"></script>
+        <script src="~/lib/npmlibs/Reflect.js"></script>
+        <script src="~/lib/npmlibs/systemjs/system-polyfills.src.js"></script>
+        <script src="~/lib/npmlibs/systemjs/system.src.js"></script>
+
+        <script src="~/lib/npmlibs/angular2/angular2-polyfills.js"></script>
 
         <script src="~/lib/npmlibs/Rx.js"></script>
-        <script src="~/lib/npmlibs/angular2.min.js"></script>
-        <script src="~/lib/npmlibs/http.min.js"></script>
+        <script src="~/lib/npmlibs/angular2/angular2.js"></script>
+        <script src="~/lib/npmlibs/angular2/http.js"></script>
 
         <link href="~/lib/npmlibs/ag-grid/dist/styles/ag-grid.css" rel="stylesheet" />
         <link href="~/lib/npmlibs/ag-grid/dist/styles/theme-fresh.css" rel="stylesheet" />
@@ -60,7 +63,6 @@
         <environment names="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
         <environment names="Staging,Production">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
@@ -71,7 +73,6 @@
                     asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                     asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
             </script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
 
         @RenderSection("scripts", required: false)
