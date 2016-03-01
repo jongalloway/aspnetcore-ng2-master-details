@@ -1,6 +1,7 @@
 ﻿"use strict";
 export default class MockOrders {
     private static orders: any[];
+    private static ordersDetails: { [id: number]: any } = {};
 
     public static getOrders() {
         if (!this.orders || this.orders.length === 0) {
@@ -11,11 +12,11 @@ export default class MockOrders {
     }
 
     public static getOrderDetails(id: number) {
-        return [
-            { productId: Math.round(Math.random() * 1000), productName: "Hammer", quantity: id, price: 55 },
-            { productId: Math.round(Math.random() * 1000), productName: "Drill", quantity: id, price: 260 },
-            { productId: Math.round(Math.random() * 1000), productName: "Ladder", quantity: id, price: 90 },
-        ];
+        if (!this.ordersDetails[id]) {
+            this.ordersDetails[id] = this.generateMockOrderDetails();
+        }
+
+        return this.ordersDetails[id];
     }
 
     private static generateMockOrders() {
@@ -25,10 +26,11 @@ export default class MockOrders {
 
         for (var i = 0; i < 10000; i++) {
             var countryData = this.countries[i % this.countries.length];
+
             orders.push({
-                id: orderId++,
+                id: orderId,
                 date: new Date(date.setDate(date.getDate() - Math.round(Math.random() * 100))).toISOString().substr(0, 10),
-                orderTotal: "$" + Math.round(Math.random() * 100) + ".00",
+                orderTotal: "$" + this.getTotalForOrder(orderId++) + ".00",
                 name: this.firstNames[i % this.firstNames.length] + " " + this.lastNames[i % this.lastNames.length],
                 address: this.addresses[i % this.addresses.length],
                 country: countryData.country,
@@ -39,6 +41,52 @@ export default class MockOrders {
         }
 
         return orders;
+    }
+
+    private static generateMockOrderDetails() {
+        var items: any[] = [];
+        var itemId: number = 0;
+        var currentProduct: any;
+        var quantity: number;
+
+        for (var i = 0; i < this.products.length; i++) {
+            if (Math.random() >= 0.5) {
+                currentProduct = this.products[i % this.products.length];
+                quantity = Math.round(Math.random() * 100);
+                items.push({
+                    id: itemId++,
+                    productId: currentProduct.id,
+                    productName: currentProduct.name,
+                    price: currentProduct.price,
+                    quantity: quantity,
+                    total: currentProduct.price * quantity
+                });
+            }
+        }
+
+        if (items.length === 0) {
+            currentProduct = this.products[Math.round(Math.random() * (this.products.length - 1))];
+            quantity = Math.round(Math.random() * 100);
+            items.push({
+                id: itemId++,
+                productId: currentProduct.id,
+                productName: currentProduct.name,
+                price: currentProduct.price,
+                quantity: quantity,
+                total: currentProduct.price * quantity
+            });
+        }
+
+        return items;
+    }
+
+    private static getTotalForOrder(orderId: number) {
+        var details: any[] = this.generateMockOrderDetails();
+        this.ordersDetails[orderId] = details;
+
+        return details.reduce((previousValue: number, currentValue:any) => {
+            return previousValue + currentValue.total;
+        }, 0);
     }
 
     private static createRandomPhoneNumber() {
@@ -54,6 +102,16 @@ export default class MockOrders {
         return result;
     }
 
+    private static products = [
+        { id: 1, name: "Hammer", price: Math.round(Math.random() * 100) },
+        { id: 2, name: "Drill", price: Math.round(Math.random() * 100) },
+        { id: 3, name: "Ladder", price: Math.round(Math.random() * 100) },
+        { id: 4, name: "Nail", price: Math.round(Math.random() * 100) },
+        { id: 5, name: "Saw", price: Math.round(Math.random() * 100) },
+        { id: 6, name: "Scissor", price: Math.round(Math.random() * 100) },
+        { id: 7, name: "Brush", price: Math.round(Math.random() * 100) },
+        { id: 8, name: "Wrench", price: Math.round(Math.random() * 100) },
+    ];
 
     private static firstNames = ["Sophie", "Isabelle", "Emily", "Olivia", "Lily", "Chloe", "Isabella",
         "Amelia", "Jessica", "Sophia", "Ava", "Charlotte", "Mia", "Lucy", "Grace", "Ruby",

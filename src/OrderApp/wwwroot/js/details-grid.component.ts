@@ -1,4 +1,4 @@
-﻿import {Component, OnChanges, SimpleChange} from "angular2/core";
+﻿import {Component, OnChanges} from "angular2/core";
 import {AgGridNg2} from "ag-grid-ng2/main";
 import {GridOptions} from "ag-grid/main";
 import {IItemInfo} from "./itemInfo";
@@ -53,7 +53,16 @@ export class DetailsGridComponent implements OnChanges {
                     return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
             },
-            { headerName: "Comments", field: "comments", width: 700 }
+            {
+                headerName: "Total",
+                field: "total",
+                cellClass: "rightJustify",
+                width: 100,
+                cellRenderer: function (params: any) {
+                    return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
+            },
+            { headerName: "Comments", field: "comments", width: 600 }
         ];
     }
 
