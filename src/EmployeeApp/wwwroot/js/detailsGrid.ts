@@ -12,8 +12,21 @@ export class DetailsGridComponent {
     itemInfo: IItemInfo;
 
     columnDefs = [
-        { headerName: "Make", field: "make" },
-        { headerName: "Model", field: "model" },
+        {
+            headerName: "Product",
+            children: [
+                {
+                    headerName: "ID", field: "productId",
+                    width: 80, pinned: true
+                },
+                {
+                    headerName: "Name", field: "productName",
+                    width: 150, pinned: true
+                }
+
+            ]
+        }, 
+        { headerName: "Quantity", field: "quantity" },
         {
             headerName: "Price",
             field: "price",
@@ -25,8 +38,8 @@ export class DetailsGridComponent {
     ];
     // put data directly onto the controller
     rowData = [
-        { make: "Toyota", model: "Celica", price: 35000 },
-        { make: "Ford", model: "Mondeo", price: 32000 },
-        { make: "Porsche", model: "Boxter", price: 72000 }
+        { productId: Math.round(Math.random() * 1000), productName: "Hammer", quantity: 5, price: 55 },
+        { productId: Math.round(Math.random() * 1000), productName: "Drill", quantity: 5, price: 260 },
+        { productId: Math.round(Math.random() * 1000), productName: "Ladder", quantity: 5, price: 90 },
     ];
 }

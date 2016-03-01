@@ -4,8 +4,6 @@ import {Component, View, Inject} from 'angular2/core';
 import {Http, HTTP_BINDINGS, Headers} from 'angular2/http';
 import {GridOptions} from 'ag-grid/main';
 import {AgGridNg2} from 'ag-grid-ng2/main';
-import ProficiencyFilter from './proficiencyFilter';
-import SkillFilter from './skillFilter';
 import RefData from './refData';
 import {IItemInfo} from './itemInfo';
 import {DetailsGridComponent} from './detailsGrid';
@@ -36,26 +34,21 @@ export class EmployeeApp {
 
     private createRowData() {
         var rowData: any[] = [];
+        var orderId: number = 1;
+        var date: Date = new Date();
 
         for (var i = 0; i < 10000; i++) {
             var countryData = RefData.countries[i % RefData.countries.length];
             rowData.push({
+                orderId: orderId++,
+                date: new Date(date.setDate(date.getDate() - Math.round(Math.random() * 100))).toISOString().substr(0, 10),
+                orderTotal: "$" + Math.round(Math.random() * 100) + ".00",
                 name: RefData.firstNames[i % RefData.firstNames.length] + ' ' + RefData.lastNames[i % RefData.lastNames.length],
-                skills: {
-                    android: Math.random() < 0.4,
-                    html5: Math.random() < 0.4,
-                    mac: Math.random() < 0.4,
-                    windows: Math.random() < 0.4,
-                    css: Math.random() < 0.4
-                },
                 address: RefData.addresses[i % RefData.addresses.length],
-                years: Math.round(Math.random() * 100),
-                proficiency: Math.round(Math.random() * 100),
                 country: countryData.country,
                 continent: countryData.continent,
                 language: countryData.language,
-                mobile: createRandomPhoneNumber(),
-                landline: createRandomPhoneNumber()
+                phone: createRandomPhoneNumber()
             });
         }
 
@@ -65,11 +58,24 @@ export class EmployeeApp {
     private createColumnDefs() {
         this.columnDefs = [
             {
-                headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
-                suppressMenu: true, pinned: true
+                headerName: 'Order',
+                children: [
+                    {
+                        headerName: "ID", field: "orderId",
+                        width: 30, pinned: true
+                    },
+                    {
+                        headerName: "Date", field: "date",
+                        width: 80, pinned: true
+                    },
+                    {
+                        headerName: "Total", field: "orderTotal",
+                        width: 80, pinned: true
+                    },
+                ]
             },
             {
-                headerName: 'Employee',
+                headerName: 'Customer',
                 children: [
                     {
                         headerName: "Name", field: "name",
@@ -83,17 +89,9 @@ export class EmployeeApp {
                 ]
             },
             {
-                headerName: 'IT Skills',
-                children: [
-                    { headerName: "Skills", width: 125, suppressSorting: true, cellRenderer: skillsCellRenderer, filter: SkillFilter },
-                    { headerName: "Proficiency", field: "proficiency", width: 120, cellRenderer: percentCellRenderer, filter: ProficiencyFilter },
-                ]
-            },
-            {
                 headerName: 'Contact',
                 children: [
-                    { headerName: "Mobile", field: "mobile", width: 150, filter: 'text' },
-                    { headerName: "Land-line", field: "landline", width: 150, filter: 'text' },
+                    { headerName: "Phone", field: "phone", width: 150, filter: 'text' },
                     { headerName: "Address", field: "address", width: 500, filter: 'text' }
                 ]
             }
@@ -110,7 +108,7 @@ export class EmployeeApp {
     }
 
     private onModelUpdated() {
-        console.log('onModelUpdated');
+        console.log('onModelUpdated'); 
         this.calculateRowCount();
     }
 
@@ -189,17 +187,6 @@ export class EmployeeApp {
         console.log('onColumnEvent: ' + $event);
     }
 
-}
-
-function skillsCellRenderer(params) {
-    var data = params.data;
-    var skills = [];
-    RefData.IT_SKILLS.forEach(function (skill) {
-        if (data && data.skills && data.skills[skill]) {
-            skills.push('<img src="/images/skills/' + skill + '.png" width="16px" title="' + skill + '" />');
-        }
-    });
-    return skills.join(' ');
 }
 
 function countryCellRenderer(params) {
