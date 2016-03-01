@@ -11,61 +11,32 @@
     </div>
     <div style="clear: both;"></div>
 
-    <div *ngIf="showGrid">
+    <!-- Because we are using the Angular ID (ie #ag-grid marker), we have to have all the items that use
+            that marker inside the same ng-if as the grid -->
 
-        <!-- Because we are using the Angular ID (ie #ag-grid marker), we have to have all the items that use
-             that marker inside the same ng-if as the grid -->
-
-        <div style="padding: 4px;" class="toolbar">
-            <button (click)="createRowData()">Refresh Data</button>
-            <span>
-                <button (click)="agGrid.api.selectAll()">Select All</button>
-                <button (click)="agGrid.api.deselectAll()">Clear Selection</button>
-            </span>
-        </div>
-        <div style="clear: both;"></div>
-
-        <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
-                     [gridOptions]="gridOptions"
-                     [columnDefs]="columnDefs"
-                     [showToolPanel]="showToolPanel"
-                     [rowData]="rowData"
-                     enableColResize
-                     enableSorting
-                     enableFilter
-                     groupHeaders
-                     toolPanelSuppressGroups
-                     toolPanelSuppressValues
-                     debug
-                     rowHeight="22"
-                     rowSelection="multiple"
-                     (modelUpdated)="onModelUpdated()"
-                     (cellClicked)="onCellClicked($event)"
-                     (cellDoubleClicked)="onCellDoubleClicked($event)"
-                     (cellContextMenu)="onCellContextMenu($event)"
-                     (cellValueChanged)="onCellValueChanged($event)"
-                     (cellFocused)="onCellFocused($event)"
-                     (rowSelected)="onRowSelected($event)"
-                     (selectionChanged)="onSelectionChanged()"
-                     (beforeFilterChanged)="onBeforeFilterChanged()"
-                     (afterFilterChanged)="onAfterFilterChanged()"
-                     (filterModified)="onFilterModified()"
-                     (beforeSortChanged)="onBeforeSortChanged()"
-                     (afterSortChanged)="onAfterSortChanged()"
-                     (virtualRowRemoved)="onVirtualRowRemoved($event)"
-                     (rowClicked)="onRowClicked($event)"
-                     (ready)="onReady($event)"
-                     (columnEverythingChanged)="onColumnEvent($event)"
-                     (columnRowGroupChanged)="onColumnEvent($event)"
-                     (columnValueChanged)="onColumnEvent($event)"
-                     (columnMoved)="onColumnEvent($event)"
-                     (columnVisible)="onColumnEvent($event)"
-                     (columnGroupOpened)="onColumnEvent($event)"
-                     (columnResized)="onColumnEvent($event)"
-                     (columnPinnedCountChanged)="onColumnEvent($event)">
-        </ag-grid-ng2>
-
-        <details-grid [itemInfo]="selectedItem"></details-grid>
+    <div style="padding: 4px;" class="toolbar">
+        <button (click)="createRowData()">Refresh Data</button>
+        <span>
+            <button (click)="agGrid.api.selectAll()">Select All</button>
+            <button (click)="agGrid.api.deselectAll()">Clear Selection</button>
+        </span>
     </div>
+    <div style="clear: both;"></div>
 
+    <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
+                    [gridOptions]="gridOptions"
+                    [columnDefs]="columnDefs"
+                    [rowData]="rowData"
+                    enableColResize
+                    enableSorting
+                    enableFilter
+                    groupHeaders
+                    rowHeight="22"
+                    rowSelection="multiple"
+                    (modelUpdated)="onModelUpdated()"
+                    (rowClicked)="onRowClicked($event)"
+                    (ready)="onReady($event)">
+    </ag-grid-ng2>
+
+    <details-grid [itemInfo]="selectedItem"></details-grid>
 </div>

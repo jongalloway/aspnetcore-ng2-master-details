@@ -18,7 +18,6 @@ import {DetailsGridComponent} from './detailsGrid';
 })
 export class EmployeeApp {
     private gridOptions: GridOptions;
-    private showGrid: boolean;
     private rowData: any[];
     private columnDefs: any[];
     private rowCount: string;
@@ -29,7 +28,6 @@ export class EmployeeApp {
         this.gridOptions = <GridOptions>{};
         this.createRowData();
         this.createColumnDefs();
-        this.showGrid = true;
     }
 
     private createRowData() {
@@ -108,85 +106,20 @@ export class EmployeeApp {
     }
 
     private onModelUpdated() {
-        console.log('onModelUpdated'); 
         this.calculateRowCount();
     }
 
     private onReady() {
-        console.log('onReady');
         this.calculateRowCount();
     }
 
-    private onCellClicked($event) {
-        console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
-    }
-
-    private onCellValueChanged($event) {
-        console.log('onCellValueChanged: ' + $event.oldValue + ' to ' + $event.newValue);
-    }
-
-    private onCellDoubleClicked($event) {
-        console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
-    }
-
-    private onCellContextMenu($event) {
-        console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
-    }
-
-    private onCellFocused($event) {
-        console.log('onCellFocused: (' + $event.rowIndex + ',' + $event.colIndex + ')');
-    }
-
-    private onRowSelected($event) {
-        console.log('onRowSelected: ' + $event.node.data.name);
-    }
-
-    private onSelectionChanged() {
-        console.log('selectionChanged');
-    }
-
-    private onBeforeFilterChanged() {
-        console.log('beforeFilterChanged');
-    }
-
-    private onAfterFilterChanged() {
-        console.log('afterFilterChanged');
-    }
-
-    private onFilterModified() {
-        console.log('onFilterModified');
-    }
-
-    private onBeforeSortChanged() {
-        console.log('onBeforeSortChanged');
-    }
-
-    private onAfterSortChanged() {
-        console.log('onAfterSortChanged');
-    }
-
-    private onVirtualRowRemoved($event) {
-        // because this event gets fired LOTS of times, we don't print it to the
-        // console. if you want to see it, just uncomment out this line
-        // console.log('onVirtualRowRemoved: ' + $event.rowIndex);
-    }
-
     private onRowClicked($event) {
-        console.log('onRowClicked: ' + $event.node.data.name);
-
         this.selectedItem = $event.node.data;
     }
 
     private onQuickFilterChanged($event) {
         this.gridOptions.api.setQuickFilter($event.target.value);
     }
-
-    // here we use one generic event to handle all the column type events.
-    // the method just prints the event name
-    private onColumnEvent($event) {
-        console.log('onColumnEvent: ' + $event);
-    }
-
 }
 
 function countryCellRenderer(params) {
@@ -203,30 +136,4 @@ function createRandomPhoneNumber() {
         }
     }
     return result;
-}
-
-function percentCellRenderer(params) {
-    var value = params.value;
-
-    var eDivPercentBar = document.createElement('div');
-    eDivPercentBar.className = 'div-percent-bar';
-    eDivPercentBar.style.width = value + '%';
-    if (value < 20) {
-        eDivPercentBar.style.backgroundColor = 'red';
-    } else if (value < 60) {
-        eDivPercentBar.style.backgroundColor = '#ff9900';
-    } else {
-        eDivPercentBar.style.backgroundColor = '#00A000';
-    }
-
-    var eValue = document.createElement('div');
-    eValue.className = 'div-percent-value';
-    eValue.innerHTML = value + '%';
-
-    var eOuterDiv = document.createElement('div');
-    eOuterDiv.className = 'div-outer-div';
-    eOuterDiv.appendChild(eValue);
-    eOuterDiv.appendChild(eDivPercentBar);
-
-    return eOuterDiv;
 }
