@@ -8,22 +8,11 @@
             <b>Orders</b>
             {{rowCount}}
         </div>
+        <button (click)="loadData()">Refresh Data</button>
     </div>
     <div style="clear: both;"></div>
 
-    <!-- Because we are using the Angular ID (ie #ag-grid marker), we have to have all the items that use
-            that marker inside the same ng-if as the grid -->
-
-    <div style="padding: 4px;" class="toolbar">
-        <button (click)="createRowData()">Refresh Data</button>
-        <span>
-            <button (click)="agGrid.api.selectAll()">Select All</button>
-            <button (click)="agGrid.api.deselectAll()">Clear Selection</button>
-        </span>
-    </div>
-    <div style="clear: both;"></div>
-
-    <ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-blue"
+    <ag-grid-ng2 #agGrid id="master-grid" class="ag-blue"
                     [gridOptions]="gridOptions"
                     [columnDefs]="columnDefs"
                     [rowData]="rowData"
@@ -32,7 +21,7 @@
                     enableFilter
                     groupHeaders
                     rowHeight="22"
-                    rowSelection="multiple"
+                    rowSelection="single"
                     (modelUpdated)="onModelUpdated()"
                     (rowClicked)="onRowClicked($event)"
                     (ready)="onReady($event)">

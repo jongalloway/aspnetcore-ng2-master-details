@@ -1,54 +1,41 @@
 ﻿"use strict";
 
-import {Component, View} from "angular2/core";
+import {Component, View, OnInit} from "angular2/core";
 import {GridOptions} from "ag-grid/main";
 import {AgGridNg2} from "ag-grid-ng2/main";
 import RefData from "./refData";
 import {IItemInfo} from "./itemInfo";
 import {DetailsGridComponent} from "./details-grid.component";
+import {OrderService} from "./order.service";
 
 @Component({
-    selector: "order-app"
+    selector: "order-app",
+    providers: [OrderService]
 })
 @View({
     directives: [AgGridNg2, DetailsGridComponent],
     templateUrl: "../html/order-app.html"
 })
-export class OrderApp {
+export class OrderApp implements OnInit {
     private gridOptions: GridOptions;
     private rowData: any[];
     private columnDefs: any[];
     private rowCount: string;
     private selectedItem: IItemInfo;
 
-    constructor() {
+    constructor(private _orderService: OrderService) {
         // we pass an empty gridOptions in, so we can grab the api out
         this.gridOptions = <GridOptions>{};
-        this.createRowData();
         this.createColumnDefs();
     }
 
-    private createRowData() {
-        var rowData: any[] = [];
-        var orderId: number = 1;
-        var date: Date = new Date();
+    ngOnInit() {
+        this.loadData();
+    }
 
-        for (var i = 0; i < 10000; i++) {
-            var countryData = RefData.countries[i % RefData.countries.length];
-            rowData.push({
-                orderId: orderId++,
-                date: new Date(date.setDate(date.getDate() - Math.round(Math.random() * 100))).toISOString().substr(0, 10),
-                orderTotal: "$" + Math.round(Math.random() * 100) + ".00",
-                name: RefData.firstNames[i % RefData.firstNames.length] + " " + RefData.lastNames[i % RefData.lastNames.length],
-                address: RefData.addresses[i % RefData.addresses.length],
-                country: countryData.country,
-                continent: countryData.continent,
-                language: countryData.language,
-                phone: createRandomPhoneNumber()
-            });
-        }
-
-        this.rowData = rowData;
+    private loadData() {
+        this._orderService.getOrders()
+            .then((orders: any) => this.rowData = orders);
     }
 
     private createColumnDefs() {
@@ -79,8 +66,8 @@ export class OrderApp {
                     },
                     {
                         headerName: "Country", field: "country", width: 150,
-                        cellRenderer: countryCellRenderer, pinned: true,
-                        filterParams: { cellRenderer: countryCellRenderer, cellHeight: 20 }
+                        cellRenderer: OrderApp.countryCellRenderer, pinned: true,
+                        filterParams: { cellRenderer: OrderApp.countryCellRenderer, cellHeight: 20 }
                     },
                 ]
             },
@@ -118,25 +105,10 @@ export class OrderApp {
     private onQuickFilterChanged($event:any) {
         this.gridOptions.api.setQuickFilter($event.target.value);
     }
-}
 
-function countryCellRenderer(params:any) {
-    "use strict";
-
-    var flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='../images/flags/" +
-        RefData.COUNTRY_CODES[params.value] + ".png'>";
-    return flag + " " + params.value;
-}
-
-function createRandomPhoneNumber() {
-    "use strict";
-
-    var result = "+";
-    for (var i = 0; i < 12; i++) {
-        result += Math.round(Math.random() * 10);
-        if (i === 2 || i === 5 || i === 8) {
-            result += " ";
-        }
+    private static countryCellRenderer(params: any) {
+        var flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='../images/flags/" +
+            RefData.COUNTRY_CODES[params.value] + ".png'>";
+        return flag + " " + params.value;
     }
-    return result;
 }
