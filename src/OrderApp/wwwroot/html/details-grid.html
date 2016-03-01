@@ -1,0 +1,14 @@
+﻿<div *ngIf="itemInfo" class="grid-container">
+    <h2>Details for Order #{{itemInfo.id}}</h2>
+
+    <ag-grid-ng2 id="details-grid" class="ag-blue"
+                 [gridOptions]="gridOptions"
+                 [columnDefs]="columnDefs"
+                 [rowData]="rowData"
+                 enableColResize
+                 enableSorting
+                 enableFilter
+                 groupHeaders
+                 rowHeight="22"
+                 rowSelection="single"></ag-grid-ng2>
+</div>
