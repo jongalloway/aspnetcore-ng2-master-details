@@ -1,4 +1,4 @@
-/// <binding Clean='clean' />
+/// <binding Clean='clean' ProjectOpened='moveToLibs' />
 "use strict";
 
 var gulp = require("gulp"),
