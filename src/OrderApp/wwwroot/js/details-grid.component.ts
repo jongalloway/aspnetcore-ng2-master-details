@@ -43,7 +43,7 @@ export class DetailsGridComponent implements OnChanges {
 
                 ]
             },
-            { headerName: "Quantity", field: "quantity", width: 100 },
+            { headerName: "Quantity", field: "quantity", width: 100, editable: true },
             {
                 headerName: "Price",
                 field: "price",
@@ -62,7 +62,7 @@ export class DetailsGridComponent implements OnChanges {
                     return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
             },
-            { headerName: "Comments", field: "comments", width: 600 }
+            { headerName: "Comments", field: "comments", width: 600, editable: true }
         ];
     }
 
