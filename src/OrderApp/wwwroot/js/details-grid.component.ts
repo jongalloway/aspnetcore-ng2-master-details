@@ -111,14 +111,14 @@ export class DetailsGridComponent implements OnChanges {
         var updatedNodes = [];
         this.gridOptions.api.forEachNode(function (node) {
             let data = node.data;
-            if (data.productId == id) {
+            if (data.productId === id) {
                 data.total = updatedItem.total;
                 data.quantity = updatedItem.quantity;
                 updatedNodes.push(node);
             }
         });
 
-        this.gridOptions.api.refreshCells(updatedNodes, ['total', 'quantity' ]);
+        this.gridOptions.api.refreshCells(updatedNodes, ["total", "quantity" ]);
     }
 
     private onCommentsValueChanged(params: any) {

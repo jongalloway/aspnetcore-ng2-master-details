@@ -115,13 +115,13 @@ export class OrderApp implements OnInit {
         var updatedNodes = [];
         this.gridOptions.api.forEachNode(function (node) {
             let data = node.data;
-            if (data.id == id) {
+            if (data.id === id) {
                 data.orderTotal = $event;
                 updatedNodes.push(node);
             }
         });
 
-        this.gridOptions.api.refreshCells(updatedNodes, ['orderTotal']);
+        this.gridOptions.api.refreshCells(updatedNodes, ["orderTotal"]);
     }
 
     private static countryCellRenderer(params: any) {
