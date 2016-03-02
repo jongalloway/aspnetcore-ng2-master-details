@@ -30,7 +30,7 @@ export default class MockOrders {
             orders.push({
                 id: orderId,
                 date: new Date(date.setDate(date.getDate() - Math.round(Math.random() * 100))).toISOString().substr(0, 10),
-                orderTotal: "$" + this.getTotalForOrder(orderId++) + ".00",
+                orderTotal: this.getTotalForOrder(orderId++),
                 name: this.firstNames[i % this.firstNames.length] + " " + this.lastNames[i % this.lastNames.length],
                 address: this.addresses[i % this.addresses.length],
                 country: countryData.country,

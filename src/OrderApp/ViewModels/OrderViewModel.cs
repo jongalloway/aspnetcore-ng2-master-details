@@ -1,15 +1,17 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OrderApp.Models
+namespace OrderApp.ViewModels
 {
-    public class Order
+    public class OrderViewModel
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+
+        public decimal OrderTotal { get; set; }
 
         public string Name { get; set; }
 
@@ -22,8 +24,5 @@ namespace OrderApp.Models
         public string Language { get; set; }
 
         public string Phone { get; set; }
-
-        [Required]
-        public virtual List<OrderDetails> OrderDetails { get; set; }
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OrderApp.Models;
 using OrderApp.Services;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace OrderApp
 {
@@ -44,11 +46,21 @@ namespace OrderApp
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<OrdersContext>(options =>
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
-            services.AddMvc();
+            
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -98,6 +110,8 @@ namespace OrderApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            SampleData.Initialize(app.ApplicationServices);
         }
 
         // Entry point for the application.

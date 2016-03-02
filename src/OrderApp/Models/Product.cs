@@ -4,8 +4,6 @@
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal UnitCost { get; set; }
-        public decimal ShippingCost { get; set; }
+        public decimal Price { get; set; }
     }
 }
