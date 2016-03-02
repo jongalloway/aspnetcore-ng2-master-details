@@ -109,7 +109,7 @@ export class DetailsGridComponent implements OnChanges {
         let id = updatedItem.productId;
 
         var updatedNodes = [];
-        this.gridOptions.api.forEachNode(function (node) {
+        this.gridOptions.api.forEachNode(function (node:any) {
             let data = node.data;
             if (data.productId === id) {
                 data.total = updatedItem.total;
