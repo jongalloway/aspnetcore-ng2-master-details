@@ -44,7 +44,7 @@ export class OrderApp implements OnInit {
                 headerName: "Order",
                 children: [
                     {
-                        headerName: "ID", field: "orderId",
+                        headerName: "ID", field: "id",
                         width: 30, pinned: true
                     },
                     {
@@ -53,7 +53,10 @@ export class OrderApp implements OnInit {
                     },
                     {
                         headerName: "Total", field: "orderTotal",
-                        width: 80, pinned: true
+                        width: 80,
+                        cellRenderer: function(params: any) {
+                            return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }, pinned: true
                     },
                 ]
             },
@@ -104,6 +107,21 @@ export class OrderApp implements OnInit {
 
     private onQuickFilterChanged($event:any) {
         this.gridOptions.api.setQuickFilter($event.target.value);
+    }
+
+    private updateOrderTotal($event: any) {
+        let id = this.selectedItem.id;
+
+        var updatedNodes = [];
+        this.gridOptions.api.forEachNode(function (node) {
+            let data = node.data;
+            if (data.id == id) {
+                data.orderTotal = $event;
+                updatedNodes.push(node);
+            }
+        });
+
+        this.gridOptions.api.refreshCells(updatedNodes, ['orderTotal']);
     }
 
     private static countryCellRenderer(params: any) {

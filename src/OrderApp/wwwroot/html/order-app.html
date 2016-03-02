@@ -28,5 +28,5 @@
                     (ready)="onReady($event)">
     </ag-grid-ng2>
 
-    <details-grid [itemInfo]="selectedItem"></details-grid>
+    <details-grid [itemInfo]="selectedItem" (updatedTotal)="updateOrderTotal($event)"></details-grid>
 </div>
