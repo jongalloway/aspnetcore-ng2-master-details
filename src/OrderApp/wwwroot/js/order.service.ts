@@ -30,7 +30,7 @@ export class OrderService {
         headers.append("If-Modified-Since", "Mon, 27 Mar 1972 00:00:00 GMT");
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.get(this.orderDetailsEndpoint + id, options)
+        return this.http.get(this.orderEndpoint + id, options)
             .map((res: Response) => res.json())
             .toPromise();
     }
@@ -42,7 +42,7 @@ export class OrderService {
         let headers = new Headers({ "Content-Type": "application/json" });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.put(this.orderDetailsEndpoint + orderDetails.productId, body, options)
+        return this.http.put(this.orderDetailsEndpoint + orderDetails.orderDetailsId, body, options)
             .map((res: Response) => res.json())
             .toPromise();
     }

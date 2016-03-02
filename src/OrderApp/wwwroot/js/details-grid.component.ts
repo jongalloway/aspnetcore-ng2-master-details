@@ -32,6 +32,9 @@ export class DetailsGridComponent implements OnChanges {
     private createColumnDefs() {
         this.columnDefs = [
             {
+                headerName: "OrderDetailsId", field: "orderDetailsId", hide: true
+            },
+            {
                 headerName: "Product",
                 children: [
                     {
