@@ -124,7 +124,7 @@ namespace OrderApp.Models
                         Language = language[i % language.Length],
                         Name = firstNames[i % firstNames.Length] + " " + lastNames[i % lastNames.Length],
                         Address = address[i % address.Length],
-                        Date = new DateTime(),
+                        Date = DateTime.Now.AddDays(-1 * random.Next(1000)),
                         Phone = "111 111 1111",
                         OrderDetails = orderDetails
                     });
