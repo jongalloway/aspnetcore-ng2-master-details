@@ -100,7 +100,7 @@ namespace OrderApp.Models
 
                 var orders = new List<Order>();
 
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 1000; i++)
                 {
                     var orderDetails = new List<OrderDetails>();
 
@@ -125,7 +125,7 @@ namespace OrderApp.Models
                         Name = firstNames[i % firstNames.Length] + " " + lastNames[i % lastNames.Length],
                         Address = address[i % address.Length],
                         Date = DateTime.Now.AddDays(-1 * random.Next(1000)),
-                        Phone = "111 111 1111",
+                        Phone = CreateRandomPhoneNumber(random),
                         OrderDetails = orderDetails
                     });
                 }
@@ -134,6 +134,21 @@ namespace OrderApp.Models
 
                 context.SaveChanges();
             }
+        }
+
+        private static string CreateRandomPhoneNumber(Random random)
+        {
+            var result = "+";
+            for (var i = 0; i < 12; i++)
+            {
+                result += random.Next(0, 10);
+                if (i == 2 || i == 5 || i == 8)
+                {
+                    result += " ";
+                }
+            }
+
+            return result;
         }
     }
 }
