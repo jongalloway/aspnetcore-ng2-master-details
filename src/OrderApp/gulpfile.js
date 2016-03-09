@@ -48,8 +48,7 @@ gulp.task("min", ["min:js", "min:css"]);
 
 var libsToMove = [
    paths.npmSrc + '/es6-shim/es6-shim.min.js',
-   paths.npmSrc + '/rxjs/bundles/Rx.js',
-   paths.npmSrc + '/reflect-metadata/Reflect.js'
+   paths.npmSrc + '/rxjs/bundles/Rx.js'
 ];
 
 gulp.task("copy-deps:systemjs", function () {
