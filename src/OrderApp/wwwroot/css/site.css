@@ -34,3 +34,8 @@ textarea {
 .rightJustify {
     text-align: right;
 }
+
+#details-grid .unselectable.ag-cell-focus {
+    background: inherit;
+    border: inherit;
+}

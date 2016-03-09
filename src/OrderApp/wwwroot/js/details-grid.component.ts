@@ -39,11 +39,13 @@ export class DetailsGridComponent implements OnChanges {
                 children: [
                     {
                         headerName: "ID", field: "productId",
-                        width: 80, pinned: true
+                        width: 80, pinned: true,
+                        cellClass: "unselectable"
                     },
                     {
                         headerName: "Name", field: "productName",
-                        width: 150, pinned: true
+                        width: 150, pinned: true,
+                        cellClass: "unselectable"
                     }
 
                 ]
@@ -55,7 +57,7 @@ export class DetailsGridComponent implements OnChanges {
             {
                 headerName: "Price",
                 field: "price",
-                cellClass: "rightJustify",
+                cellClass: "rightJustify unselectable",
                 width: 100,
                 cellRenderer: function (params: any) {
                     return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -64,7 +66,7 @@ export class DetailsGridComponent implements OnChanges {
             {
                 headerName: "Total",
                 field: "total",
-                cellClass: "rightJustify",
+                cellClass: "rightJustify unselectable",
                 width: 100,
                 cellRenderer: function (params: any) {
                     return "$" + params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
