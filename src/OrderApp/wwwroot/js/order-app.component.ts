@@ -88,7 +88,7 @@ export class OrderApp implements OnInit {
         if (this.gridOptions.api && this.rowData) {
             var model = this.gridOptions.api.getModel();
             var totalRows = this.rowData.length;
-            var processedRows = model.getVirtualRowCount();
+            var processedRows = model.getRowCount();
             this.rowCount = processedRows.toLocaleString() + " / " + totalRows.toLocaleString();
         }
     }

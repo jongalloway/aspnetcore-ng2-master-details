@@ -2,9 +2,9 @@
   "name": "ASP.NET",
   "version": "0.0.0",
   "dependencies": {
-    "ag-grid": "3.3.x",
-    "ag-grid-ng2": "3.3.x",
-    "angular2": "2.0.0-beta.7",
+    "ag-grid": "4.0.x",
+    "ag-grid-ng2": "4.0.x",
+    "angular2": "2.0.0-beta.8",
     "systemjs": "0.19.23",
     "es6-shim": "^0.33.3",
     "rxjs": "5.0.0-beta.2",
