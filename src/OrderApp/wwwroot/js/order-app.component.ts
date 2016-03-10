@@ -85,11 +85,8 @@ export class OrderApp implements OnInit {
     }
 
     private calculateRowCount() {
-        if (this.gridOptions.api && this.rowData) {
-            var model = this.gridOptions.api.getModel();
-            var totalRows = this.rowData.length;
-            var processedRows = model.getRowCount();
-            this.rowCount = processedRows.toLocaleString() + " / " + totalRows.toLocaleString();
+        if (this.rowData) {
+            this.rowCount = this.rowData.length.toLocaleString();
         }
     }
 
@@ -113,7 +110,7 @@ export class OrderApp implements OnInit {
         let id = this.selectedItem.id;
 
         var updatedNodes = [];
-        this.gridOptions.api.forEachNode(function (node) {
+        this.gridOptions.api.forEachNode(function (node:any) {
             let data = node.data;
             if (data.id === id) {
                 data.orderTotal = $event;
