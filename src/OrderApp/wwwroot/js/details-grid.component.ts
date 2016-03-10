@@ -96,18 +96,39 @@ export class DetailsGridComponent implements OnChanges {
 
     private onQuantityValueChanged(params: any) {
         let newValue = Number(params.newValue);
-        if (newValue === NaN) {
+
+        if (isNaN(newValue) || newValue === params.oldValue) {
             params.data.quantity = params.oldValue;
-        } else {
-            params.data.quantity = newValue;
+            return;
         }
 
+        params.data.quantity = newValue;
         params.data.total = newValue * params.data.price;
-        this.updateItem(params.data);
 
-        this.updateOrderTotal();
+        this._orderService.updateOrderDetails(params.data)
+            .then(() => {
+                this.updateItem(params.data);
+                this.updateOrderTotal();
+            }).catch(() => {
+                params.data.quantity = params.oldValue;
+                params.data.total = params.oldValue * params.data.price;
+                this.updateItem(params.data);
+                console.log("Save failed");
+            });
+    }
 
-        this._orderService.updateOrderDetails(params.data);
+    private onCommentsValueChanged(params: any) {
+        if (params.newValue === params.oldValue) {
+            return;
+        }
+
+        params.data.comments = params.newValue;
+        this._orderService.updateOrderDetails(params.data)
+            .catch(() => {
+                params.data.comments = params.oldValue;
+                this.updateItem(params.data);
+                console.log("Save failed");
+            });
     }
 
     private updateItem(updatedItem: any) {
@@ -119,14 +140,11 @@ export class DetailsGridComponent implements OnChanges {
             if (data.productId === id) {
                 data.total = updatedItem.total;
                 data.quantity = updatedItem.quantity;
+                data.comments = updatedItem.comments;
                 updatedNodes.push(node);
             }
         });
 
-        this.gridOptions.api.refreshCells(updatedNodes, ["total", "quantity" ]);
-    }
-
-    private onCommentsValueChanged(params: any) {
-        this._orderService.updateOrderDetails(params.data);
+        this.gridOptions.api.refreshCells(updatedNodes, ["total", "quantity", "comments" ]);
     }
 }

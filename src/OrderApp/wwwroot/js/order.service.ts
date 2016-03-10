@@ -43,7 +43,6 @@ export class OrderService {
         let options = new RequestOptions({ headers: headers });
 
         return this.http.put(this.orderDetailsEndpoint + orderDetails.orderDetailsId, body, options)
-            .map((res: Response) => res.json())
             .toPromise();
     }
 }
