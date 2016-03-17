@@ -10,9 +10,7 @@ import {OrderService} from "./order.service";
 
 @Component({
     selector: "order-app",
-    providers: [OrderService]
-})
-@View({
+    providers: [OrderService],
     directives: [AgGridNg2, DetailsGridComponent],
     templateUrl: "../html/order-app.html"
 })
